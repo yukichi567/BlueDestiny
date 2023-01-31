@@ -43,9 +43,10 @@ public class ShootController : MonoBehaviour
             go.transform.forward = _muzzle.forward;
             bulletTimer = 0;
             bulletAmmo -= 1;
+
         }
 
-        if(Input.GetKey(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.R))
         {
             bulletAmmo = 60;
         }
@@ -68,21 +69,14 @@ public class ShootController : MonoBehaviour
             _crosshair.color = _defaultCrosshairColor;
         }
 
-        if (Input.GetButton("Fire2"))
-        {
-            DrawLaser(hitPosition);
-
-            if (hitCollider)
-            {
-                Hit(hitCollider);
-            }
-        }
-        else
-        {
-            DrawLaser(_muzzle.position);   // 撃っていない時は、Line の終点と始点を同じ位置にすることで Line を消す
-        }
-
-
+        //if (Input.GetButton("Fire2"))
+        //{
+ 
+        //}
+        //else
+        //{
+        //    DrawLaser(_muzzle.position);   // 撃っていない時は、Line の終点と始点を同じ位置にすることで Line を消す
+        //}
     }
 
     /// <summary>

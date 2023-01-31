@@ -4,20 +4,45 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    Rigidbody rb = default;
-    [Header("移動速度")]
-    [SerializeField] float moveSpeed = 3;
-
-    [Header("HP")]
-    [SerializeField] float EnemyHp = 90;
+    [Header("移動速度")] [SerializeField] float moveSpeed = 3;
+    [Header("HP")][SerializeField] float _Hp = 90;
+    [Tooltip("設置判定")] [SerializeField] bool _isGrounded = true;
+    [Tooltip("地面と判定するレイヤーを設定する")] [SerializeField] LayerMask _groundLayer;
+    [Tooltip("接地判定の開始地点に対する Pivot からのオフセット")] [SerializeField] Vector3 _groundCheckStartOffset = Vector3.zero;
+    [Tooltip("接地判定の終点に対する Pivot からのオフセット")] [SerializeField] Vector3 _groundCheckEndOffset = Vector3.zero;
+    GameObject _target;
+    Rigidbody _rb;
+    CameraController _ccr;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+
+        _target = GameObject.Find("Player");
+        _rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
-    {
-        
+    {        
+        transform.LookAt(_target.transform);
+        transform.position += transform.forward * moveSpeed;
+
+        if(_Hp < 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
+    //void FixedUpdate()
+    //{
+    //    // 接地判定
+    //    Vector3 start = _groundCheckStartOffset + transform.position;
+    //    Vector3 end = _groundCheckEndOffset + transform.position;
+    //    Debug.DrawLine(start, end);
+    //    _isGrounded = Physics.Linecast(start, end, _groundLayer);
+
+
+    //    // 移動
+    //    if (_isGrounded)    // 空中では移動できない
+    //    {
+            
+    //    }
+    //}
 }
