@@ -12,21 +12,23 @@ public class EnemyController : MonoBehaviour
     [Tooltip("接地判定の終点に対する Pivot からのオフセット")] [SerializeField] Vector3 _groundCheckEndOffset = Vector3.zero;
     GameObject _target;
     Rigidbody _rb;
-    CameraController _ccr;
+    CameraController _cameraController;
+
     void Start()
     {
-
+        _cameraController = FindObjectOfType<CameraController>();
         _target = GameObject.Find("Player");
         _rb = GetComponent<Rigidbody>();
+        _cameraController.AddEnemy(transform);
     }
 
     void Update()
     {        
         transform.LookAt(_target.transform);
         transform.position += transform.forward * moveSpeed;
-
-        if(_Hp < 0)
+        if(_Hp <= 0)
         {
+            _cameraController.RemoveEnemy(transform);
             Destroy(this.gameObject);
         }
     }
@@ -42,7 +44,14 @@ public class EnemyController : MonoBehaviour
     //    // 移動
     //    if (_isGrounded)    // 空中では移動できない
     //    {
-            
+
     //    }
     //}
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == ("Bullet"))
+        {
+            _Hp -= 1;
+        }
+    }
 }

@@ -44,10 +44,6 @@ public class PlayerController : MonoBehaviour
         dir.y = 0;
         _rb.velocity = dir * _moveSpeed + _rb.velocity.y * Vector3.up;  // Y ²•ûŒü‚Ì‘¬“x‚Í•Ï‚¦‚¸AXZ ²•ûŒü‚ÉˆÚ“®‚·‚é
 
-        //Vector3 p = Camera.main.transform.position;
-        //p.y = transform.position.y;
-        //transform.LookAt(p);
-
         //transform.forward = dir.normalized;
         // •ûŒü‚Ì“ü—Í‚ª‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢, “ü—Í‚³‚ê‚½‚ç‚»‚Ì•ûŒü‚ğŒü‚­
         //if (dir != Vector3.zero)
@@ -65,7 +61,7 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetKeyDown("space") && _jumpCount < _maxJumpCount) Jump();       
-        if(Input.GetKeyDown("Q") && _boost < _boostMax)Boost();           
+        //if(Input.GetKeyDown("Q") && _boost < _boostMax)Boost();           
     }  
 
     void FixedUpdate()
