@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     Rigidbody _rb;
+    [SerializeField] private Transform _maincamera = default;
 
     [Header("移動速度")]
     [SerializeField] float _moveSpeed = 3;
@@ -36,27 +37,21 @@ public class PlayerController : MonoBehaviour
     {
         //WASD
         float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical"); 
-
+        float v = Input.GetAxisRaw("Vertical");
+        transform.LookAt(_maincamera);
         Vector3 dir = Vector3.forward * v + Vector3.right * h;
         // カメラのローカル座標系を基準に dir を変換する
         dir = Camera.main.transform.TransformDirection(dir);
         dir.y = 0;
-        _rb.velocity = dir * _moveSpeed + _rb.velocity.y * Vector3.up;  // Y 軸方向の速度は変えず、XZ 軸方向に移動する
-
-        //transform.forward = dir.normalized;
-        // 方向の入力がない場合は何もしない, 入力されたらその方向を向く
-        //if (dir != Vector3.zero)
-        //{
-        //    //this.transform.forward = dir;
-        //    transform.forward = dir.normalized;
-        //}
+        // Y 軸方向の速度は変えず、XZ 軸方向に移動する
+        _rb.velocity = dir * _moveSpeed + _rb.velocity.y * Vector3.up; 
 
         if (Input.GetButton("Fire1"))
         {
             if (dir != Vector3.zero)
             {
                 this.transform.forward = dir;
+
             }
         }
 

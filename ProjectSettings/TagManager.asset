@@ -11,15 +11,16 @@ TagManager:
   - ground
   - outzone
   - Ground
+  - Radar Camera
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - enemy
+  - Enemy
   - Water
   - UI
-  - 
-  - 
+  - MiniMapRaycast
+  - PlayerRayer
   - 
   - 
   - 

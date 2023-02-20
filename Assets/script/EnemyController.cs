@@ -8,8 +8,7 @@ public class EnemyController : MonoBehaviour
     [Header("HP")][SerializeField] float _Hp = 90;
     [Tooltip("設置判定")] [SerializeField] bool _isGrounded = true;
     [Tooltip("地面と判定するレイヤーを設定する")] [SerializeField] LayerMask _groundLayer;
-    [Tooltip("接地判定の開始地点に対する Pivot からのオフセット")] [SerializeField] Vector3 _groundCheckStartOffset = Vector3.zero;
-    [Tooltip("接地判定の終点に対する Pivot からのオフセット")] [SerializeField] Vector3 _groundCheckEndOffset = Vector3.zero;
+    int interval = 0;
     GameObject _target;
     Rigidbody _rb;
     CameraController _cameraController;

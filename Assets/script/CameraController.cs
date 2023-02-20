@@ -12,6 +12,8 @@ public class CameraController : MonoBehaviour
     [Header("Pattern2")]
     List<Transform> _enemyTransforms = new();
     List<CinemachineVirtualCamera> _cvcs = new();
+    [SerializeField] private Transform _pc;
+    [SerializeField] private Transform _ec;
 
     void Update()
     {
@@ -24,7 +26,7 @@ public class CameraController : MonoBehaviour
         {
             ChangeCamera();
         }
-
+        //Priority:•¡”‚Ì”ñ“¯Šú‘€ì‚ª”z—ñ‚É‘¶İ‚·‚éê‡A ƒJƒƒ‰‚ÉˆÚ‚·‚à‚Ì‚Ì—Dæ‡ˆÊ‚ğİ’è‚µ‚Ä‚¢‚é
         _cvcs[_enemyTransformIndex].Priority = 20;
     }
 

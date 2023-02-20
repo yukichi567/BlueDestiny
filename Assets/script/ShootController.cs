@@ -53,30 +53,18 @@ public class ShootController : MonoBehaviour
 
         // カメラから照準に向かって Ray を飛ばし、何かに当たっているか調べる
         Ray ray = Camera.main.ScreenPointToRay(_crosshair.rectTransform.position);
-        RaycastHit hit = default;
-        Vector3 hitPosition = _muzzle.transform.position + _muzzle.transform.forward * _shootRange;  // hitPosition は Ray が当たった場所。Line の終点となる。初期値（何にも当たっていない時）は Muzzle から射程距離だけ前方にする。
-        Collider hitCollider = default;    // Ray が当たったコライダー
+        RaycastHit hit = default;       
 
         // Ray が何かに当たったか・当たっていないかで処理を分ける        
         if (Physics.Raycast(ray, out hit, _shootRange, _layerMask))
         {
             _crosshair.color = _lockedCrosshairColor;
-            hitPosition = hit.point;    // Ray が当たった場所
-            hitCollider = hit.collider;    // Ray が当たったオブジェクト
+
         }
         else
         {
             _crosshair.color = _defaultCrosshairColor;
         }
-
-        //if (Input.GetButton("Fire2"))
-        //{
- 
-        //}
-        //else
-        //{
-        //    DrawLaser(_muzzle.position);   // 撃っていない時は、Line の終点と始点を同じ位置にすることで Line を消す
-        //}
     }
 
     /// <summary>
